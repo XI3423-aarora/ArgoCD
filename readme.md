@@ -53,11 +53,31 @@ For More Information Visit : https://github.com/argoproj/argo-helm/tree/main/cha
 
 #### Alternative method
 ##### use Yaml file
-        {% include "./app.yml" %}
+        apiVersion: argoproj.io/v1alpha1
+        kind: Application
+        metadata:
+          name: guest
+          namespace: argocd
+        spec:
+          project: default
 
+          # Source of the application manifests
+          source:
+             repoURL: https://github.com/Kube.git  # Can point to either a Helm chart repo or a git repo.
+             targetRevision: HEAD  # For Helm, this refers to the chart version.
+             path: charts/kube-bench-adapter
+  
+          destination:
+             server : https://kubernetes.default.svc
+             namespace: my-appss
 
+          syncPolicy:
+             syncOptions:
+             - CreateNamespace=true
 
-
+             automated:
+               selfHeal: true
+               prune: true
 
 ## References
 1. https://blog.risingstack.com/argo-cd-kubernetes-tutorial/
