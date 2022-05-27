@@ -52,9 +52,8 @@ For More Information Visit : https://github.com/argoproj/argo-helm/tree/main/cha
 2. Click on new app and update form according to the field.
 
 #### Alternative method
-|code|
-|-------|
-|apiVersion: argoproj.io/v1alpha1
+##### use Yaml file
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: guest
@@ -77,7 +76,7 @@ spec:
     automated:
       selfHeal: true
       prune: true
-|
+
 
 
 
